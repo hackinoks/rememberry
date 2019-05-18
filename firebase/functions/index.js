@@ -118,11 +118,24 @@ app.intent('Hap Intent', async (conv) => {
 
 
 app.intent('actions_intent_CANCEL2', (conv) => {
-	if(conv.user.storage.userName){
-		conv.close("İyi günler " + conv.user.storage.userName);
+	var date = new Date();
+	var current_hour = date.getHours();
+	if(current_hour<18){
+		
+		if(conv.user.storage.userName){
+			conv.close('İyi günler ' + conv.user.storage.userName);
 	}else{
-		conv.close("İyi günler ");
-
+			conv.close('İyi günler ');
+	}
+	
+		
+	}else{
+		if(conv.user.storage.userName){
+			conv.close('İyi akşamlar ' + conv.user.storage.userName);
+	}else{
+			conv.close('İyi akşamlar ');
+	}
+		
 	}
 	
 });
@@ -210,10 +223,24 @@ app.intent('Call Intent - yes - yes - yes - yes', (conv) => {
 
 
 app.intent('Call Intent - yes - yes - yes - yes - no', (conv) => {
-	if(conv.user.storage.userName){
+	var date = new Date();
+	var current_hour = date.getHours();
+	if(current_hour<18){
+		
+		if(conv.user.storage.userName){
 			conv.close('İyi günler ' + conv.user.storage.userName);
 	}else{
 			conv.close('İyi günler ');
+	}
+	
+		
+	}else{
+		if(conv.user.storage.userName){
+			conv.close('İyi akşamlar ' + conv.user.storage.userName);
+	}else{
+			conv.close('İyi akşamlar ');
+	}
+		
 	}
 	
 	
