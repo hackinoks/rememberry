@@ -7,9 +7,9 @@ Selam! Ben, Rememberry! **Alzheimer** hastalığına sahip kişilerin hayatını
  - Temel aktivitelerin basamak basamak nasıl yapıldığını hatırlatmak. 
  - Hangi zaman aralıklarında hangi ilaçların içileceğini hatırlatmak.
  - İlaçların yan etkilerini hatırlatmak.
- - İlaçların nasıl içileceklerini hatırlatmak. (Çiğnenerek, yutularak, damlatılarak vb.)
  - İlaçların nasıl içileceklerini adım adım anlatmak. 
- - Kullanıcının beni unutmasına karşın, kendimi tanıtmam. 
+ - Kullanıcının beni unutmasına karşın, kendimi tanıtmak.
+ - Karşıdan karşıya nasıl geçileceğini adım adım anlatmak.
 
 
 ## Kimlerin işine yararım?
