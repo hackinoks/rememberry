@@ -28,7 +28,7 @@ const functions = require('firebase-functions');
 // Instantiate the Dialogflow client.
 const app = dialogflow({debug: true});
 
-var welcomeAgainWords = ['Hey geri gelmişsin', 'Seni yeniden görmek çok güzel', 'Seni özlemiştim', 'Tekrar hoşgeldiniz', 'Eski dostum hoşgeldin'];
+var welcomeAgainWords = ['Hey geri gelmişsin', 'Seni yeniden görmek çok güzel', 'Seni özlemiştim', 'Tekrar hoşgeldiniz', 'Hoşgeldin eski dostum'];
 
 var firstWelcomeWords = ['Hoşgeldiniz', 'Hoşgeldin' , 'Rememberry\'e Hoşgeldiniz', 'Merhaba' , 'Hoşgeldiniz'];
 
@@ -89,16 +89,16 @@ app.intent('Hap Intent', async (conv) => {
 		printString = printString+ "Akşam içmen gereken ilaçlar ve özellikleri:\n";
         for(var i in json.aksam ){
             printString=printString+i+"\n";
-            printString=printString+json.aksam[i].type + " kullanılır\n";
-            printString=printString+"yan etkileri: "+json.aksam[i].yanetki + "\n";
+            printString=printString+json.aksam[i].type + " kullanılır.\n";
+            printString=printString+"yan etkileri: "+json.aksam[i].yanetki + ".\n";
             
         }
     }else if(18> current_hour >= 12){
         printString = printString+ "Öğlen içmen gereken ilaçlar ve özellikleri:\n";
         for(var i in json.ogle ){
             printString=printString+i+"\n";
-            printString=printString+json.ogle[i].type + " kullanılır\n";
-            printString=printString+"yan etkileri: "+json.ogle[i].yanetki + "\n";
+            printString=printString+json.ogle[i].type + " kullanılır.\n";
+            printString=printString+"yan etkileri: "+json.ogle[i].yanetki + ".\n";
             
         }
     }
@@ -106,8 +106,8 @@ app.intent('Hap Intent', async (conv) => {
         printString = printString+ "Sabah içmen gereken ilaçlar ve özellikleri:\n";
         for(var i in json.sabah ){
             printString=printString+i+"\n";
-            printString=printString+json.sabah[i].type + " kullanılır\n";
-            printString=printString+"yan etkileri: "+json.sabah[i].yanetki + "\n";
+            printString=printString+json.sabah[i].type + " kullanılır.\n";
+            printString=printString+"yan etkileri: "+json.sabah[i].yanetki + ".\n";
             
         }
     }
@@ -151,40 +151,41 @@ app.intent('Call Intent', (conv) => {
 
 app.intent('Call Intent - yes', (conv) => {
 	counter = 3;
-	conv.data.lastParen = 'Harika ekranın altında ortadaki butona dokunarak tuş kilidini aç. Açtın mı ?';
-	conv.ask('Harika ekranın altında ortadaki butona dokunarak tuş kilidini aç. Açtın mı ?');
-	conv.ask(new Suggestions('Evet','Hayır'));
+	conv.data.lastParen = 'Harika ekranın altında ortadaki butona dokunarak tuş kilidini aç. Açtıktan sonra \"devam"\ diyerek devam edebilirsin.';
+	conv.ask('Harika ekranın altında ortadaki butona dokunarak tuş kilidini aç. Açtıktan sonra \"devam"\ diyerek devam edebilirsin.');
 	
 });
 app.intent('Call Intent - no', (conv) => {
 	counter = 3;
-	conv.data.lastParen = 'Telefonunu çaldırıyorum... Buldun mu?'
-	conv.ask('Telefonunu çaldırıyorum... Buldun mu?');
+	const audioSound = 'https://actions.google.com/sounds/v1/alarms/medium_bell_ringing_near.ogg';
+	conv.ask(`<speak> Telefonunu çaldırıyorum... Eğer bulursan \"evet\", bulamazsan tekrar çaldırmak için \"hayır\" demen yeterlidir. ` +  `<audio src="${audioSound}"></audio></speak>`);
 	conv.ask(new Suggestions('Evet','Hayır'));
+	
 	
 	
 });
 
 app.intent('Call Intent - no - yes', (conv) => {
 	counter = 3;
-	conv.data.lastParen ='Harika ekranın altında ortadaki butona dokunarak tuş kilidini aç. Açtın mı ?';
-	conv.ask('Harika ekranın altında ortadaki butona dokunarak tuş kilidini aç. Açtın mı ?');
-	conv.ask(new Suggestions('Evet','Hayır'));
+	conv.data.lastParen ='Harika ekranın altında ortadaki butona dokunarak tuş kilidini aç.  Açtıktan sonra \"devam"\ diyerek devam edebilirsin.';
+	conv.ask('Harika ekranın altında ortadaki butona dokunarak tuş kilidini aç.  Açtıktan sonra \"devam"\ diyerek devam edebilirsin.');
+	
 	
 	
 });
 
 app.intent('Call Intent - no - no', (conv) => {
 	counter = 3;
-	conv.data.lastParen ='Tekrar çaldırıyorum... Buldun mu?';
-	conv.ask('Tekrar çaldırıyorum... Buldun mu?');
+	const audioSound = 'https://actions.google.com/sounds/v1/alarms/medium_bell_ringing_near.ogg';
+	conv.ask(`<speak> Telefonunu tekrar çaldırıyorum... Eğer bulursan \"evet\", bulamazsan tekrar çaldırmak için \"hayır\" demen yeterlidir. ` +  `<audio src="${audioSound}"></audio></speak>`);
+	conv.ask(new Suggestions('Evet','Hayır'));
 	
 });
 
 app.intent('Call Intent - no - no - yes', (conv) => {
 	counter = 3;
-	conv.data.lastParen ='Harika ekranın altındaki ortadaki butona dokunarak tuş kilidini aç. Açtın mı ?';
-	conv.ask('Harika ekranın altındaki ortadaki butona dokunarak tuş kilidini aç. Açtın mı ?');
+	conv.data.lastParen ='Harika ekranın altındaki ortadaki butona dokunarak tuş kilidini aç.  Açtıktan sonra \"devam"\ diyerek devam edebilirsin.';
+	conv.ask('Harika ekranın altındaki ortadaki butona dokunarak tuş kilidini aç.  Açtıktan sonra \"devam"\ diyerek devam edebilirsin.');
 	
 });
 
@@ -192,24 +193,24 @@ app.intent('Call Intent - no - no - no', (conv) => {
 	if(conv.user.storage.userName){
 		conv.close('Telefonunuzu  bulamadım. Daha sonra tekrar deneyin ' + conv.user.storage.userName);
 	}else{
-		conv.close('Telefonunuzu  bulamadım. Daha sonra tekrar deneyin ');
+		conv.close('Telefonunuzu  bulamadım. Daha sonra tekrar deneyin. ');
 
 	}
 });
 
 app.intent('Call Intent - yes - yes', (conv) => {
 	counter = 3;
-	conv.data.lastParen = 'Sonra sol alt köşede üzerinde telefon simgesi olan rehber butonuna dokun. Dokunduktan sonra rehberde aramak istediğiniz ismin üstüne tıklayın. Tıkladınız mı?';
-	conv.ask('Sonra sol alt köşede üzerinde telefon simgesi olan rehber butonuna dokun. Dokunduktan sonra rehberde aramak istediğiniz ismin üstüne tıklayın. Tıkladınız mı?');
-	conv.ask(new Suggestions('Evet'));
+	conv.data.lastParen = 'Sonra sol alt köşede üzerinde telefon simgesi olan rehber butonuna dokun. Dokunduktan sonra rehberde aramak istediğiniz ismin üstüne tıklayın. Tıkladıktan sonra \"devam"\ diyerek devam edebilirsin.?';
+	conv.ask('Sonra sol alt köşede üzerinde telefon simgesi olan rehber butonuna dokun. Dokunduktan sonra rehberde aramak istediğiniz ismin üstüne tıklayın. Tıkladıktan sonra \"devam"\ diyerek devam edebilirsin. ?');
+	conv.ask(new Suggestions('Evet', 'Tekrar'));
 	
 });
 
 app.intent('Call Intent - yes - yes - yes', (conv) => {
 	counter = 3;
-	conv.data.lastParen = 'Arayacağın kişinin adına dokunduktan sonra arama başlayacaktır.';
+	conv.data.lastParen = 'Arayacağın kişinin adına dokunduktan sonra arama başlayacaktır. Dokunduktan sonra \"devam\" diyerek devam edebilirsiniz';
 	conv.ask('Arayacağın kişinin adına dokunduktan sonra arama başlayacaktır.');
-	conv.ask(new Suggestions('Evet'));
+	conv.ask(new Suggestions('Evet','Tekrar'));
 	
 });
 
@@ -230,7 +231,7 @@ app.intent('Call Intent - yes - yes - yes - yes - no', (conv) => {
 		if(conv.user.storage.userName){
 			conv.close('İyi günler ' + conv.user.storage.userName);
 	}else{
-			conv.close('İyi günler ');
+			conv.close('İyi günler. ');
 	}
 	
 		
@@ -238,7 +239,7 @@ app.intent('Call Intent - yes - yes - yes - yes - no', (conv) => {
 		if(conv.user.storage.userName){
 			conv.close('İyi akşamlar ' + conv.user.storage.userName);
 	}else{
-			conv.close('İyi akşamlar ');
+			conv.close('İyi akşamlar. ');
 	}
 		
 	}
@@ -342,8 +343,8 @@ app.intent('Default Welcome Intent', (conv) => {
    }));
  } else {
 	counter = 3;
-	conv.data.lastParen = welcomeAgainWords[random(0,5)] + ' ' +name+' eğer beni hatırlamıyorsan sen kimsin diyerek hakkımda detaylı bilgi alabilirsin veya doğrudan hatırlamak istediğin aktiviteyi söyleyebilirsin';
-   conv.ask(welcomeAgainWords[random(0,5)] + ' ' +name+' eğer beni hatırlamıyorsan sen kimsin diyerek hakkımda detaylı bilgi alabilirsin veya doğrudan hatırlamak istediğin aktiviteyi söyleyebilirsin');
+	conv.data.lastParen = welcomeAgainWords[random(0,5)] + ' ' +name+' eğer beni hatırlamıyorsan sen kimsin diyerek hakkımda detaylı bilgi alabilirsin veya doğrudan hatırlamak istediğin aktiviteyi söyleyebilirsin.';
+   conv.ask(welcomeAgainWords[random(0,5)] + ' ' +name+' eğer beni hatırlamıyorsan sen kimsin diyerek hakkımda detaylı bilgi alabilirsin veya doğrudan hatırlamak istediğin aktiviteyi söyleyebilirsin.');
    conv.ask(new Suggestions('Sen kimsin?','İlaç içmek', 'Telefon araması yapmak', 'Karşıdan karşıya geçmek' , 'Kapat'));
  } 
  
