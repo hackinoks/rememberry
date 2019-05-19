@@ -153,6 +153,7 @@ app.intent('Call Intent - yes', (conv) => {
 	counter = 3;
 	conv.data.lastParen = 'Harika ekranın altında ortadaki butona dokunarak tuş kilidini aç. Açtıktan sonra \"devam"\ diyerek devam edebilirsin.';
 	conv.ask('Harika ekranın altında ortadaki butona dokunarak tuş kilidini aç. Açtıktan sonra \"devam"\ diyerek devam edebilirsin.');
+	conv.ask(new Suggestions('Devam'));
 	
 });
 app.intent('Call Intent - no', (conv) => {
@@ -169,7 +170,7 @@ app.intent('Call Intent - no - yes', (conv) => {
 	counter = 3;
 	conv.data.lastParen ='Harika ekranın altında ortadaki butona dokunarak tuş kilidini aç.  Açtıktan sonra \"devam"\ diyerek devam edebilirsin.';
 	conv.ask('Harika ekranın altında ortadaki butona dokunarak tuş kilidini aç.  Açtıktan sonra \"devam"\ diyerek devam edebilirsin.');
-	
+	conv.ask(new Suggestions('Devam'));
 	
 	
 });
@@ -186,7 +187,7 @@ app.intent('Call Intent - no - no - yes', (conv) => {
 	counter = 3;
 	conv.data.lastParen ='Harika ekranın altındaki ortadaki butona dokunarak tuş kilidini aç.  Açtıktan sonra \"devam"\ diyerek devam edebilirsin.';
 	conv.ask('Harika ekranın altındaki ortadaki butona dokunarak tuş kilidini aç.  Açtıktan sonra \"devam"\ diyerek devam edebilirsin.');
-	
+	conv.ask(new Suggestions('Devam'));
 });
 
 app.intent('Call Intent - no - no - no', (conv) => {
@@ -202,51 +203,17 @@ app.intent('Call Intent - yes - yes', (conv) => {
 	counter = 3;
 	conv.data.lastParen = 'Sonra sol alt köşede üzerinde telefon simgesi olan rehber butonuna dokun. Dokunduktan sonra rehberde aramak istediğiniz ismin üstüne dokunun. Dokunduktan sonra \"devam"\ diyerek devam edebilirsin.';
 	conv.ask('Sonra sol alt köşede üzerinde telefon simgesi olan rehber butonuna dokun. Dokunduktan sonra rehberde aramak istediğiniz ismin üstüne dokunun. Dokunduktan sonra \"devam"\ diyerek devam edebilirsin.');
-	conv.ask(new Suggestions('Evet', 'Tekrar'));
+	conv.ask(new Suggestions('Devam'));
 	
 });
 
 app.intent('Call Intent - yes - yes - yes', (conv) => {
 	counter = 3;
-	conv.data.lastParen = 'Arayacağın kişinin adına dokunduktan sonra arama başlayacaktır. Dokunduktan sonra \"devam\" diyerek devam edebilirsiniz';
-	conv.ask('Arayacağın kişinin adına dokunduktan sonra arama başlayacaktır. Dokunduktan sonra \"devam\" diyerek devam edebilirsiniz');
-	conv.ask(new Suggestions('Evet','Tekrar'));
-	
-});
-
-app.intent('Call Intent - yes - yes - yes - yes', (conv) => {
-	counter = 3;
-	conv.data.lastParen = 'Başarıyla aramayı gerçekleştirdiniz. Benden başka istediğiniz bir şey var mı?';
-	conv.ask('Başarıyla aramayı gerçekleştirdiniz. Benden başka istediğiniz bir şey var mı?');
+	conv.data.lastParen = 'Arayacağın kişinin adına dokunduktan sonra arama başlayacaktır. Şimdi ne yapmamı istersin?';
+	conv.ask('Arayacağın kişinin adına dokunduktan sonra arama başlayacaktır. Şimdi ne yapmamı istersin?');
 	conv.ask(new Suggestions('İlaç içmek', 'Telefon araması yapmak', 'Karşıdan karşıya geçmek', 'Kapat'));
 	
 });
-
-
-app.intent('Call Intent - yes - yes - yes - yes - no', (conv) => {
-	var date = new Date();
-	var current_hour = date.getHours();
-	if(current_hour<18){
-		
-		if(conv.user.storage.userName){
-			conv.close('İyi günler ' + conv.user.storage.userName);
-	}else{
-			conv.close('İyi günler. ');
-	}
-	
-		
-	}else{
-		if(conv.user.storage.userName){
-			conv.close('İyi akşamlar ' + conv.user.storage.userName);
-	}else{
-			conv.close('İyi akşamlar. ');
-	}
-		
-	}
-	
-	
-});
-
 
 
 const noMatch = [
