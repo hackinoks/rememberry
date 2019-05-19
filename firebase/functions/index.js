@@ -178,7 +178,7 @@ app.intent('Call Intent - no - yes', (conv) => {
 app.intent('Call Intent - no - no', (conv) => {
 	counter = 3;
 	const audioSound = 'https://actions.google.com/sounds/v1/alarms/medium_bell_ringing_near.ogg';
-	conv.ask(`<speak> Telefonunu tekrar çaldırıyorum... Eğer bulursan \"evet\", bulamazsan tekrar çaldırmak için \"hayır\" demen yeterlidir. ` +  `<audio src="${audioSound}"></audio></speak>`);
+	conv.ask(`<speak> Telefonunu tekrar çaldırıyorum... Eğer bulursan \"evet\", bulamazsan \"hayır\" demen yeterlidir. ` +  `<audio src="${audioSound}"></audio></speak>`);
 	conv.ask(new Suggestions('Evet','Hayır'));
 	
 });
