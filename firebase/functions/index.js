@@ -200,8 +200,8 @@ app.intent('Call Intent - no - no - no', (conv) => {
 
 app.intent('Call Intent - yes - yes', (conv) => {
 	counter = 3;
-	conv.data.lastParen = 'Sonra sol alt köşede üzerinde telefon simgesi olan rehber butonuna dokun. Dokunduktan sonra rehberde aramak istediğiniz ismin üstüne tıklayın. Tıkladıktan sonra \"devam"\ diyerek devam edebilirsin.?';
-	conv.ask('Sonra sol alt köşede üzerinde telefon simgesi olan rehber butonuna dokun. Dokunduktan sonra rehberde aramak istediğiniz ismin üstüne tıklayın. Tıkladıktan sonra \"devam"\ diyerek devam edebilirsin. ?');
+	conv.data.lastParen = 'Sonra sol alt köşede üzerinde telefon simgesi olan rehber butonuna dokun. Dokunduktan sonra rehberde aramak istediğiniz ismin üstüne dokunun. Dokunduktan sonra \"devam"\ diyerek devam edebilirsin.';
+	conv.ask('Sonra sol alt köşede üzerinde telefon simgesi olan rehber butonuna dokun. Dokunduktan sonra rehberde aramak istediğiniz ismin üstüne dokunun. Dokunduktan sonra \"devam"\ diyerek devam edebilirsin.');
 	conv.ask(new Suggestions('Evet', 'Tekrar'));
 	
 });
@@ -209,7 +209,7 @@ app.intent('Call Intent - yes - yes', (conv) => {
 app.intent('Call Intent - yes - yes - yes', (conv) => {
 	counter = 3;
 	conv.data.lastParen = 'Arayacağın kişinin adına dokunduktan sonra arama başlayacaktır. Dokunduktan sonra \"devam\" diyerek devam edebilirsiniz';
-	conv.ask('Arayacağın kişinin adına dokunduktan sonra arama başlayacaktır.');
+	conv.ask('Arayacağın kişinin adına dokunduktan sonra arama başlayacaktır. Dokunduktan sonra \"devam\" diyerek devam edebilirsiniz');
 	conv.ask(new Suggestions('Evet','Tekrar'));
 	
 });
